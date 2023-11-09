@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Sign Up</h2>
+    <form>
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit" onclick="onSubmit()">Sign Up</button>
+        </div>
+    </form>
+<script>
+    function onSubmit() {
+    // Get the values from the form
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Define the URL and the data
+    const url = '/signup';
+    const data = {
+        username: username,
+        email: email,
+        password: password
+    };
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch(err => console.log('Request Failed', err));
+}
+</script>
+</body>
+</html>
